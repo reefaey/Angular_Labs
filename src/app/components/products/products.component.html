@@ -1,0 +1,43 @@
+<!-- <h1>Total Cost : {{totalCost}}</h1>
+<h2>Credit Card : {{creditCard}}</h2>
+
+<div class="mb-3 w-50 mx-auto">
+  <label for="" class="form-label">Categories</label>
+  <select title="Categories" class="form-select form-select-lg" (change)="filteredProductsFn()" name="" id="" [(ngModel)]="selectedCatById">
+    <option value="0" selected>All</option>
+    <option *ngFor="let cat of Categories" value="{{cat.id}}">{{cat.name}}</option>
+  </select>
+  <h3>{{selectedCatById}}</h3>
+
+  <!-- <button (click)="changeCat()">change cat</button> -->
+<!--</div> -->
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 m-4">
+
+  <ng-container *ngFor="let product of filteredProducts;let i=index;let c=count;trackBy: trackProducts">
+    <div class="col" *ngIf="product.quantity!=0">
+
+      <!-- <div class="col" *ngFor="let product of products"> -->
+      <div class="card h-100" appShadowedElement BGColor="pink"
+        [style.background-color]="(product.quantity==1)?'red':'white'">
+        <!-- <img src="{{product.imageUrl}}" alt="img"> -->
+        <!-- property binding -->
+        <img [src]="product.imageUrl" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <span class="card-text">Price: {{product.price}}</span>
+          <br>
+          <span class="card-text">Quantity: {{product.quantity}}</span>
+          <ng-template #elseBlock>
+            <span class="card-text">Out of Stock</span>
+          </ng-template>
+          <!-- refrence , template variable -->
+          <input title="totalCost" type="number" min="1" value="1" #count />
+          <!-- <button class="btn btn-primary" (click)="buy(product.price,count.value)">Buy</button> -->
+          <button class="btn btn-primary" (click)="buy(product,count.value)">Buy</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

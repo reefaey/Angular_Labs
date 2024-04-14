@@ -1,0 +1,39 @@
+<p>Hello</p>
+<div class="mb-3 w-50 mx-auto">
+  <label for="" class="form-label">Categories</label>
+  <select title="Categories" class="form-select form-select-lg" name="" id="" [(ngModel)]="selectedCatById">
+    <option value="0" selected>All</option>
+    <option *ngFor="let cat of Categories" value="{{cat.id}}">{{cat.name}}</option>
+  </select>
+
+  <h1>Total Cost : {{totalCost}}</h1>
+  <!-- <h1>Total Cost : {{ChangeTotalCost()}}</h1> -->
+
+  <h2> Credit Card :{{credit|creditCard}} </h2>
+  <!-- <h3>{{selectedCatById}}</h3> -->
+
+  <!-- <button (click)="changeCat()">change cat</button> -->
+</div>
+
+<app-products [recieveCatId]="selectedCatById" (onTotalOrderPriceChanged)="ChangeTotalCost($event)"></app-products>
+
+
+  
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let product of productsAdded;let i=index">
+    <tr>
+      <th scope="row">{{product.name}}</th>
+      <td>{{product.price}}</td>
+      <td>{{product.quantity}}</td>
+      <td><input type="button" (click)="removeProduct(product)" value="Remove"></td>
+    </tr>
+  </tbody>
+</table>
